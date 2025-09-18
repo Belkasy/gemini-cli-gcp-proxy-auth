@@ -42,7 +42,7 @@ env:
   # node & publish mode
   NODE_VERSION_FILE: .nvmrc
   PACKAGE_PUBLISH_MODE: workspaces  # or: single
-  WORKSPACES_FILTER: ""             # comma-separated names to limit (optional)
+  WORKSPACES_FILTER: "@belkasy/gemini-cli,@belkasy/gemini-cli-core" # Only build and publish these packages
 
   # GitHub Packages (npm) config
   GH_NPM_REGISTRY: "https://npm.pkg.github.com"

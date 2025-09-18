@@ -1,5 +1,5 @@
 {
-  "name": "gemini-cli",
+  "name": "@belkasy/gemini-cli",
   "version": "0.7.0-nightly.20250918.2722473a",
   "engines": {
     "node": ">=20.0.0"
