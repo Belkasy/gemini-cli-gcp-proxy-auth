@@ -1,11 +1,11 @@
 {
-  "name": "gemini-cli",
+  "name": "@belkasy/gemini-cli",
   "version": "0.7.0-nightly.20250918.2722473a",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
-      "name": "gemini-cli",
+      "name": "@belkasy/gemini-cli",
       "version": "0.7.0-nightly.20250918.2722473a",
       "workspaces": [
         "packages/*"
@@ -443,6 +443,14 @@
       "engines": {
         "node": ">=18"
       }
+    },
+    "node_modules/@belkasy/gemini-cli": {
+      "resolved": "packages/cli",
+      "link": true
+    },
+    "node_modules/@belkasy/gemini-cli-core": {
+      "resolved": "packages/core",
+      "link": true
     },
     "node_modules/@bundled-es-modules/cookie": {
       "version": "2.0.1",
@@ -1448,10 +1456,6 @@
       "bin": {
         "uuid": "dist/bin/uuid"
       }
-    },
-    "node_modules/@google/gemini-cli": {
-      "resolved": "packages/cli",
-      "link": true
     },
     "node_modules/@google/gemini-cli-a2a-server": {
       "resolved": "packages/a2a-server",
@@ -8678,10 +8682,6 @@
       "engines": {
         "node": ">=14"
       }
-    },
-    "node_modules/gemini-cli-core": {
-      "resolved": "packages/core",
-      "link": true
     },
     "node_modules/gemini-cli-vscode-ide-companion": {
       "resolved": "packages/vscode-ide-companion",
@@ -16553,7 +16553,7 @@
       }
     },
     "packages/cli": {
-      "name": "@google/gemini-cli",
+      "name": "@belkasy/gemini-cli",
       "version": "0.7.0-nightly.20250918.2722473a",
       "dependencies": {
         "@google/gemini-cli-core": "file:../core",
@@ -16745,7 +16745,7 @@
       }
     },
     "packages/core": {
-      "name": "gemini-cli-core",
+      "name": "@belkasy/gemini-cli-core",
       "version": "0.7.0-nightly.20250918.2722473a",
       "dependencies": {
         "@google-cloud/logging": "^11.2.1",
