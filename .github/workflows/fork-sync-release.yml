@@ -172,7 +172,7 @@ jobs:
                 return 0
               fi
             fi
-            if [ -n "$name" ] && ! grep -q "^@${{ env.USER_SCOPE }}/" <<<"$name"; then
+            if [ -n "$name" ] && ! grep -iq "^@${{ env.USER_SCOPE }}/" <<<"$name"; then
               echo "::error file=$file::Package name 	'$name' must start with @${{ env.USER_SCOPE }}/"
               FAIL=1
             fi
