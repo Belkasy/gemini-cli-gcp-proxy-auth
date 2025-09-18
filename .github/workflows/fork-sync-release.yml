@@ -34,7 +34,7 @@ env:
   UPSTREAM_REPO: gemini-cli
 
   # strict semver v0.5.3 (no pre-release or build)
-  TAG_REGEX: '^v[0-9]+\.[0-9]+\.[0-9]+$'
+  TAG_REGEX: '^v[0-9]+\.[0-9]+\.[0-9]+
 
   # Set TAG_ONLY from input if workflow_dispatch, else default to false
   TAG_ONLY: ${{ github.event_name == 'workflow_dispatch' && inputs.tag_only || 'false' }}
@@ -167,17 +167,19 @@ jobs:
             local name
             name=$(jq -r '.name' "$file" 2>/dev/null || echo "")
             [ "$name" = "null" ] && name=""
+            if [ -n "${WORKSPACES_FILTER}" ]; then
+              if [ -z "$name" ] || ! [[ ",${WORKSPACES_FILTER}," == *",$name,"* ]]; then
+                return 0
+              fi
+            fi
             if [ -n "$name" ] && ! grep -q "^@${{ env.USER_SCOPE }}/" <<<"$name"; then
               echo "::error file=$file::Package name 	'$name' must start with @${{ env.USER_SCOPE }}/"
               FAIL=1
             fi
           }
-          check_pkg package.json
-          if [ -f package-lock.json ] || [ -d packages ]; then
-            find . -path "*/node_modules/*" -prune -o -name package.json -print \
-            | grep -v 	'^./package.json$' \
-            | while read -r f; do check_pkg "$f"; done
-          fi
+          while read -r f; do
+            check_pkg "$f"
+          done < <(find . -path "*/node_modules/*" -prune -o -name package.json -print)
           [ $FAIL -eq 0 ] || exit 1
 
       # =================================================================
